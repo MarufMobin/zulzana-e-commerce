@@ -1,19 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 import 'app_theme.dart';
+import 'providers/theme_mode_provider.dart';
 import 'routes.dart';
 
-class ZulzanaApp extends StatelessWidget {
+class ZulzanaApp extends StatefulWidget {
   const ZulzanaApp({super.key});
 
   @override
+  State<ZulzanaApp> createState() => _ZulzanaAppState();
+}
+
+class _ZulzanaAppState extends State<ZulzanaApp> {
+  final ThemeModeProvider _themeModeProvider = ThemeModeProvider();
+
+  @override
+  void initState(){
+    super.initState();
+    _themeModeProvider.setDefaultThemeMode();
+  }
+  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Zulzana App',
-      initialRoute: SplashScreen.name,
-      onGenerateRoute: AppRoutes.onGenerateRoute,
-      theme: AppTheme.lightThemeData,
-      darkTheme: AppTheme.darkThemeData,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider.value(value: _themeModeProvider)],
+      child: Consumer<ThemeModeProvider>(
+        builder: (context, themeModeProvider, _) {
+          return MaterialApp(
+            title: 'Zulzana App',
+            initialRoute: SplashScreen.name,
+            onGenerateRoute: AppRoutes.onGenerateRoute,
+            theme: AppTheme.lightThemeData,
+            darkTheme: AppTheme.darkThemeData,
+            themeMode: themeModeProvider.themeMode,
+          );
+        },
+      ),
     );
   }
 }
