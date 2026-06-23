@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zulzana_e_commerce/l10n/app_localizations.dart';
 import '../../../../app/app_colors.dart';
 import '../widgets/app_logo.dart';
 
@@ -24,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
             spacing: 16,
             children: [
               CircularProgressIndicator(color: AppColors.themeColor),
-              Text('Version 1.0.0'),
+              Text('${AppLocalizations.of(context)!.version} 1.0.0'),
             ],
           ),
           const SizedBox(height: 16),

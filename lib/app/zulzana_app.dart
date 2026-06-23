@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:zulzana_e_commerce/l10n/app_localizations.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 import 'app_theme.dart';
 import 'providers/theme_mode_provider.dart';
@@ -16,10 +18,11 @@ class _ZulzanaAppState extends State<ZulzanaApp> {
   final ThemeModeProvider _themeModeProvider = ThemeModeProvider();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _themeModeProvider.setDefaultThemeMode();
   }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -33,6 +36,14 @@ class _ZulzanaAppState extends State<ZulzanaApp> {
             theme: AppTheme.lightThemeData,
             darkTheme: AppTheme.darkThemeData,
             themeMode: themeModeProvider.themeMode,
+            localizationsDelegates: [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: [Locale('en'), Locale('bn')],
+            locale: Locale('en'),
           );
         },
       ),
