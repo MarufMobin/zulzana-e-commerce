@@ -1,4 +1,5 @@
 {
   "version": "Version",
-  "helloWorld": "Hello World!"
+  "helloWorld": "Hello World!",
+  "email" : "Email"
 }

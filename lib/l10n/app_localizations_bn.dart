@@ -13,4 +13,7 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get helloWorld => 'Hello World! Bn';
+
+  @override
+  String get email => 'Email Bn';
 }

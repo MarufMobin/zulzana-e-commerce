@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../features/auth/presentation/screens/sing_in_screen.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
 
 class AppRoutes {
@@ -8,6 +9,8 @@ class AppRoutes {
     switch (settings.name) {
       case SplashScreen.name:
         widget = SplashScreen();
+      case SignInScreen.name:
+        widget = SignInScreen();
     }
 
     return MaterialPageRoute(builder: (ctx) => widget);
