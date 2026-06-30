@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zulzana_e_commerce/features/shared/presentation/utils/validators.dart';
 import '../widgets/app_logo.dart';
+import 'sign_up_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
@@ -92,7 +93,9 @@ class _SignInScreenState extends State<SignInScreen> {
     }
   }
 
-  void _onTapSignUpButton() {}
+  void _onTapSignUpButton() {
+    Navigator.pushNamed(context, SignUpScreen.name);
+  }
 
   @override
   void dispose() {
