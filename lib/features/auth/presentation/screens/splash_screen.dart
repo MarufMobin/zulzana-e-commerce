@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:zulzana_e_commerce/l10n/app_localizations.dart';
 import '../../../../app/app_colors.dart';
+import '../../../shared/presentation/presentation/main_nav_bar_holder.dart';
 import '../widgets/app_logo.dart';
-import 'sing_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -21,9 +21,9 @@ class _SplashScreenState extends State<SplashScreen> {
     _navigateToNextScreen();
   }
 
-  Future<void>_navigateToNextScreen() async {
+  Future<void> _navigateToNextScreen() async {
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, SignInScreen.name);
+    Navigator.pushReplacementNamed(context, MainNavBarHolder.name);
   }
 
   @override
