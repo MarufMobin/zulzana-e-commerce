@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/home_app_bar.dart';
+import '../widgets/home_carousel_slider.dart';
 import '../widgets/product_search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +18,13 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: SingleChildScrollView(
-          child: Column(children: [ProductSearchBar()]),
+          child: Column(
+            spacing: 16,
+            children: [
+              ProductSearchBar(),
+              HomeCarouselSlider()
+            ],
+          ),
         ),
       ),
     );
