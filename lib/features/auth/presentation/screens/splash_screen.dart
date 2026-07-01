@@ -23,7 +23,12 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(Duration(seconds: 3));
-    Navigator.pushReplacementNamed(context, MainNavBarHolder.name);
+    if (!mounted) return;
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      MainNavBarHolder.name,
+      (predicate) => false,
+    );
   }
 
   @override

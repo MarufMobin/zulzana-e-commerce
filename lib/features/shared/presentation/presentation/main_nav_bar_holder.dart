@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/app_colors.dart';
+import '../../../home/presentation/screens/home_screen.dart';
 import 'providers/main_nav_holder_provider.dart';
 
 class MainNavBarHolder extends StatefulWidget {
@@ -13,12 +14,18 @@ class MainNavBarHolder extends StatefulWidget {
 }
 
 class _MainNavBarHolderState extends State<MainNavBarHolder> {
-
+  final List<Widget> _screens = [
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+    HomeScreen(),
+  ];
   @override
   Widget build(BuildContext context) {
     return Consumer<MainNavHolderProvider>(
       builder: (context, mainNavHolderProvider, _) {
         return Scaffold(
+          body: _screens[mainNavHolderProvider.currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: mainNavHolderProvider.currentIndex,
             unselectedItemColor: Colors.grey,
