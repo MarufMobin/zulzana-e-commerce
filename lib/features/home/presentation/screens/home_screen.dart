@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../shared/presentation/screens/providers/main_nav_holder_provider.dart';
+import '../../../shared/presentation/widgets/product_card.dart';
 import '../widgets/HomeCategorySection.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/home_carousel_slider.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final textTheme = TextTheme.of(context);
     return Scaffold(
       appBar: HomeAppBar(),
       body: Padding(
@@ -28,10 +30,25 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               ProductSearchBar(),
               HomeCarouselSlider(),
-              SectionHeader(headerText: 'Category', onTabSeeAll: () {
-                context.read<MainNavHolderProvider>().navigateToCategory();
-              }),
+              SectionHeader(
+                headerText: 'Category',
+                onTabSeeAll: () {
+                  context.read<MainNavHolderProvider>().navigateToCategory();
+                },
+              ),
               HomeCategorySection(),
+              SectionHeader(
+                headerText: 'Popular',
+                onTabSeeAll: () {
+                  context.read<MainNavHolderProvider>().navigateToCategory();
+                },
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [1, 2, 3, 4, 5].map((e) => ProductCard()).toList(),
+                ),
+              ),
             ],
           ),
         ),
