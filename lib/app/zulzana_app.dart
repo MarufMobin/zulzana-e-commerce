@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:zulzana_e_commerce/app/providers/locale_provider.dart';
-import 'package:zulzana_e_commerce/features/shared/presentation/presentation/providers/main_nav_holder_provider.dart';
-import 'package:zulzana_e_commerce/l10n/app_localizations.dart';
 import '../features/auth/presentation/screens/splash_screen.dart';
+import '../features/shared/presentation/screens/providers/main_nav_holder_provider.dart';
+import '../l10n/app_localizations.dart';
 import 'app_theme.dart';
+import 'providers/locale_provider.dart';
 import 'providers/theme_mode_provider.dart';
 import 'routes.dart';
 
@@ -33,10 +33,10 @@ class _ZulzanaAppState extends State<ZulzanaApp> {
       providers: [
         ChangeNotifierProvider.value(value: _themeModeProvider),
         ChangeNotifierProvider.value(value: _localProvider),
-        ChangeNotifierProvider(create: (_)=> MainNavHolderProvider()),
+        ChangeNotifierProvider(create: (_) => MainNavHolderProvider()),
       ],
       child: Consumer<LocaleProvider>(
-        builder: (context, localeProvider, _ ) {
+        builder: (context, localeProvider, _) {
           return Consumer<ThemeModeProvider>(
             builder: (context, themeModeProvider, _) {
               return MaterialApp(
@@ -57,7 +57,7 @@ class _ZulzanaAppState extends State<ZulzanaApp> {
               );
             },
           );
-        }
+        },
       ),
     );
   }

@@ -16,13 +16,15 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.white,
     textTheme: TextTheme(
       titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+      titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       labelLarge: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
     ),
     inputDecorationTheme: _inputDecorationTheme,
     filledButtonTheme: _filledButtonThemeData,
     appBarTheme: AppBarTheme(
       backgroundColor: Colors.white,
-     )
+      titleTextStyle: TextStyle(fontSize: 16, color: Colors.grey),
+    ),
   );
 
   static final ThemeData _darkThemeData = ThemeData(
@@ -34,10 +36,15 @@ class AppTheme {
     scaffoldBackgroundColor: Colors.black.withAlpha(80),
     textTheme: TextTheme(
       titleLarge: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+      titleMedium: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
       labelLarge: TextStyle(color: Colors.grey, fontWeight: FontWeight.w400),
     ),
     inputDecorationTheme: _inputDecorationTheme,
     filledButtonTheme: _filledButtonThemeData,
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+      titleTextStyle: TextStyle(fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+    ),
   );
 
   static final InputDecorationTheme _inputDecorationTheme =

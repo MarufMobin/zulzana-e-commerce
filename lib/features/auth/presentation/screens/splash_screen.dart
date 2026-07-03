@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:zulzana_e_commerce/l10n/app_localizations.dart';
 import '../../../../app/app_colors.dart';
-import '../../../shared/presentation/presentation/main_nav_bar_holder.dart';
+import '../../../shared/presentation/screens/main_nav_bar_holder.dart';
 import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {

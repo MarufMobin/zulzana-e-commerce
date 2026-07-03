@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../shared/presentation/screens/providers/main_nav_holder_provider.dart';
+import '../widgets/HomeCategorySection.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/home_carousel_slider.dart';
 import '../widgets/product_search_bar.dart';
+import '../widgets/section_header.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -22,7 +27,11 @@ class _HomeScreenState extends State<HomeScreen> {
             spacing: 16,
             children: [
               ProductSearchBar(),
-              HomeCarouselSlider()
+              HomeCarouselSlider(),
+              SectionHeader(headerText: 'Category', onTabSeeAll: () {
+                context.read<MainNavHolderProvider>().navigateToCategory();
+              }),
+              HomeCategorySection(),
             ],
           ),
         ),
