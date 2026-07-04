@@ -19,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    final textTheme = TextTheme.of(context);
+    // final textTheme = TextTheme.of(context);
     return Scaffold(
       appBar: HomeAppBar(),
       body: Padding(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../app/app_colors.dart';
+import '../../../category/presentation/screens/category_screen.dart';
 import '../../../home/presentation/screens/home_screen.dart';
+import '../../../wishlist/presentation/screens/wishlist_screen.dart';
 import 'providers/main_nav_holder_provider.dart';
 
 class MainNavBarHolder extends StatefulWidget {
@@ -16,8 +18,8 @@ class MainNavBarHolder extends StatefulWidget {
 class _MainNavBarHolderState extends State<MainNavBarHolder> {
   final List<Widget> _screens = [
     HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    CategoryScreen(),
+    WishlistScreen(),
     HomeScreen(),
   ];
   @override

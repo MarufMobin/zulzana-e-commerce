@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zulzana_e_commerce/features/shared/presentation/widgets/product_card.dart';
+import '../../../shared/presentation/widgets/product_card.dart';
 
 class ProductListByCategoryScreen extends StatefulWidget {
   const ProductListByCategoryScreen({
