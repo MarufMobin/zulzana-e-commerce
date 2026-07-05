@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+import '../../../../app/app_colors.dart';
+import '../../../../app/asset_paths.dart';
+import '../../../../app/constants.dart';
+import '../../../shared/presentation/widgets/inc_dec_button.dart';
+
+class CardItem extends StatelessWidget {
+  const CardItem({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.white,
+      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Row(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Image.asset(AssetPaths.navLogoSvg, width: 100),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 8
+              ),
+              child: Column(
+                spacing: 8,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment:
+                          CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Title Of Product',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            Text(
+                              'Color: Red    Size: XL',
+                              style: TextStyle(color: Colors.black54),
+                            ),
+                          ],
+                        ),
+                      ),
+                      IconButton(
+                        onPressed: () {},
+                        icon: Icon(Icons.delete),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '${Constants.takaSign}200',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: AppColors.themeColor,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 90,
+                        child: IncDecButton(
+                          maxCount: 20,
+                          minCount: 1,
+                          initialValue: 1,
+                          onChange: (int value){
+                            print(value);
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
