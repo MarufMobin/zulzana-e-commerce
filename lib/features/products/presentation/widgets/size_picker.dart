@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
 
-class ColorPicker extends StatefulWidget {
-  const ColorPicker({super.key, required this.colors, required this.onChange});
+class SizePicker extends StatefulWidget {
+  const SizePicker({super.key, required this.sizes, required this.onChange});
 
-  final List<String> colors;
+  final List<String> sizes;
   final Function(String) onChange;
 
   @override
-  State<ColorPicker> createState() => _ColorPickerState();
+  State<SizePicker> createState() => _SizePickerState();
 }
 
-class _ColorPickerState extends State<ColorPicker> {
-  String? _selectedColor;
+class _SizePickerState extends State<SizePicker> {
+  String? _selectedSize;
 
   @override
   Widget build(BuildContext context) {
     return Wrap(
       spacing: 8,
-      children: widget.colors.map((color) {
+      children: widget.sizes.map((size) {
         return GestureDetector(
           onTap: () {
-            _selectedColor = color;
-            widget.onChange(color);
+            _selectedSize = size;
+            widget.onChange(size);
             setState(() {});
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 6),
             decoration: BoxDecoration(
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.circular(4),
-              color: color == _selectedColor ? AppColors.themeColor : null,
+              color: _selectedSize == size ? AppColors.themeColor : null,
             ),
             child: Text(
-              color,
+              size,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w500,
-                color: color == _selectedColor ? Colors.white : null,
+                color: _selectedSize == size ? Colors.white : null,
               ),
             ),
           ),
