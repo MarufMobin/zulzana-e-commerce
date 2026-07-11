@@ -31,7 +31,7 @@ class NetworkCaller {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          errorMessage: decodedJson['message'] ?? 'Something went wrong',
+          errorMessage: decodedJson['msg'] ?? 'Something went wrong',
         );
       }
     } on Exception catch (e) {
@@ -70,7 +70,7 @@ class NetworkCaller {
         return NetworkResponse(
           isSuccess: false,
           statusCode: response.statusCode,
-          errorMessage: decodedJson['message'] ?? 'Something went wrong',
+          errorMessage: decodedJson['msg'] ?? 'Something went wrong',
         );
       }
     } on Exception catch (e) {
