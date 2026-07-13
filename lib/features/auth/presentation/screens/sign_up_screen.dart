@@ -245,7 +245,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
     if (!mounted) return;
 
     if (isSuccess) {
-      Navigator.pushNamed(context, VerifyOtpScreen.name);
+      Navigator.pushNamed(
+        context,
+        VerifyOtpScreen.name,
+        arguments: _emailTEController.text.trim(),
+      );
     } else {
       showSnackBarMessage(context, _signUpProvider.errorMessage!);
     }

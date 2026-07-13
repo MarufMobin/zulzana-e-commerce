@@ -19,7 +19,8 @@ class AppRoutes {
       case SignUpScreen.name:
         widget = SignUpScreen();
       case VerifyOtpScreen.name:
-        widget = VerifyOtpScreen();
+        final email = settings.arguments as String;
+        widget = VerifyOtpScreen(email: email);
       case MainNavBarHolder.name:
         widget = MainNavBarHolder();
       case ProductListByCategoryScreen.name:
