@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zulzana_e_commerce/l10n/app_localizations.dart';
 import '../../../../app/app_colors.dart';
 import '../../../shared/presentation/screens/main_nav_bar_holder.dart';
+import '../provider/auth_controller.dart';
 import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +24,13 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _navigateToNextScreen() async {
     await Future.delayed(Duration(seconds: 3));
+
+    if (await AuthController.isLoggedIn()) {
+      await AuthController.loadUserData();
+    }
+
     if (!mounted) return;
+
     Navigator.pushNamedAndRemoveUntil(
       context,
       MainNavBarHolder.name,

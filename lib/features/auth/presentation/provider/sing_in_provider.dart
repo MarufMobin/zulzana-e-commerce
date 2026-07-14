@@ -5,6 +5,7 @@ import '../../../../app/get_network_caller.dart';
 import '../../../../app/urls.dart';
 import '../../data/models/sign_in_params.dart';
 import '../../data/models/user_model.dart';
+import 'auth_controller.dart';
 
 class SignInProvider extends ChangeNotifier {
   bool _signInProgress = false;
@@ -29,8 +30,8 @@ class SignInProvider extends ChangeNotifier {
       isSuccess = true;
       _errorMessage = null;
       String token = response.body['data']['token'];
-      UserModel user = UserModel.fromJson(response.body['data']['user']);
-      // TODO: Save user token and user data into shared preference
+      UserModel userModel = UserModel.fromJson(response.body['data']['user']);
+      await AuthController.saveUserData(token, userModel);
     } else {
       _errorMessage = response.errorMessage;
     }
