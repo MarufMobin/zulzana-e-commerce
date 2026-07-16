@@ -2,16 +2,18 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../app/app_colors.dart';
+import '../../data/models/slider_model.dart';
 
 class HomeCarouselSlider extends StatefulWidget {
-  const HomeCarouselSlider({super.key});
+  const HomeCarouselSlider({super.key, required this.sliders});
+
+  final List<SliderModel> sliders;
 
   @override
   State<HomeCarouselSlider> createState() => _HomeCarouselSliderState();
 }
 
 class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
-
   final ValueNotifier<int> _selectedIndex = ValueNotifier(0);
 
   @override
@@ -20,18 +22,29 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
       spacing: 8,
       children: [
         CarouselSlider(
-          options: CarouselOptions(height: 180.0, viewportFraction: 1,onPageChanged: (index, _){
-            _selectedIndex.value = index;
-          }),
-          items: [1, 2, 3, 4, 5].map((i) {
+          options: CarouselOptions(
+            height: 180.0,
+            viewportFraction: 1,
+            onPageChanged: (index, _) {
+              _selectedIndex.value = index;
+            },
+          ),
+          items: widget.sliders.map((slider) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.symmetric(horizontal: 1.0),
-                  decoration: BoxDecoration(color: Colors.amber),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.amber,
+                    image: DecorationImage(
+                      image: NetworkImage(slider.photoUrl),
+                      onError: (_, _) => Icon(Icons.error_outline),
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                   alignment: Alignment.center,
-                  child: Center(child: Text('text $i', style: TextStyle(fontSize: 16.0))),
                 );
               },
             );
@@ -49,13 +62,15 @@ class _HomeCarouselSliderState extends State<HomeCarouselSlider> {
                     height: 10,
                     margin: EdgeInsets.only(right: 4),
                     decoration: BoxDecoration(
-                      color: i == index ? AppColors.themeColor : Colors.grey.shade300,
+                      color: i == index
+                          ? AppColors.themeColor
+                          : Colors.grey.shade300,
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
               ],
             );
-          }
+          },
         ),
       ],
     );
