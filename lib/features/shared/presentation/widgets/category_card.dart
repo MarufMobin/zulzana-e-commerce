@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
+import '../../../category/data/models/category_model.dart';
 import '../../../products/presentation/screens/product_list_by_category_screen.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({
-    super.key,
-    // required this.categoryId,
-    // required this.categoryName,
-  });
+  const CategoryCard({super.key, required this.categoryModel});
 
-  final String categoryId = 'amr';
-  final String categoryName = 'sdakfjds';
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +15,10 @@ class CategoryCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           ProductListByCategoryScreen.name,
-          arguments: {'categoryId': categoryId, 'categoryName': categoryName},
+          arguments: {
+            'categoryId': categoryModel.id,
+            'categoryName': categoryModel.title,
+          },
         );
       },
       child: Column(
@@ -30,11 +29,18 @@ class CategoryCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             padding: EdgeInsets.all(16),
-            child: Icon(Icons.computer, size: 48, color: AppColors.themeColor),
+            child: Image.network(
+              categoryModel.icon,
+              width: 48,
+              height: 48,
+              errorBuilder: (_, _, _) {
+                return Icon(Icons.error_outline, size: 48, color: Colors.grey);
+              },
+            ),
           ),
           const SizedBox(height: 4),
           Text(
-            'Electronics',
+            categoryModel.title,
             style: TextStyle(
               fontWeight: FontWeight.w500,
               color: AppColors.themeColor,

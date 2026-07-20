@@ -12,7 +12,7 @@ class HomeCategorySection extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         itemCount: 10,
         itemBuilder: (context, index) {
-          return CategoryCard();
+          // return CategoryCard();
         },
         separatorBuilder: (_, _) => SizedBox(width: 8),
       ),

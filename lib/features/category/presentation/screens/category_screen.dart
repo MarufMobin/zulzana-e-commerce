@@ -12,7 +12,6 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-
   final ScrollController _scrollController = ScrollController();
   late final CategoryListProvider _categoryListProvider;
 
@@ -55,16 +54,26 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 child: Column(
                   children: [
                     Expanded(
-                      child: GridView.builder(
-                        controller: _scrollController,
-                        itemCount: _categoryListProvider.categoryList.length,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4,
-                          mainAxisSpacing: 8,
-                        ),
-                        itemBuilder: (context, index) {
-                          return FittedBox(child: CategoryCard());
+                      child: RefreshIndicator(
+                        onRefresh: () async {
+                          _categoryListProvider.refreshCategoryList();
                         },
+                        child: GridView.builder(
+                          controller: _scrollController,
+                          itemCount: _categoryListProvider.categoryList.length,
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 4,
+                            mainAxisSpacing: 8,
+                          ),
+                          itemBuilder: (context, index) {
+                            return FittedBox(
+                              child: CategoryCard(
+                                categoryModel:
+                                    _categoryListProvider.categoryList[index],
+                              ),
+                            );
+                          },
+                        ),
                       ),
                     ),
                     if (_categoryListProvider.isLoadingMore)
