@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import '../../../../app/app_colors.dart';
 import '../../../../app/asset_paths.dart';
+import '../../../products/data/models/product_model.dart';
 import '../../../products/presentation/screens/product_details_screen.dart';
 
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key});
+  const ProductCard({super.key, required this.productModel});
+
+  final ProductModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class ProductCard extends StatelessWidget {
         Navigator.pushNamed(
           context,
           ProductDetailsScreen.name,
-          arguments: 'product-id',
+          arguments: productModel.id,
         );
       },
       child: Card(
@@ -36,7 +39,12 @@ class ProductCard extends StatelessWidget {
                     topRight: Radius.circular(8),
                   ),
                 ),
-                child: Image.asset(AssetPaths.navLogoSvg),
+                child: Image.network(
+                  getProductPhoto(productModel.photos),
+                  errorBuilder: (context, _, _) {
+                    return Image.asset(AssetPaths.logoSvg);
+                  },
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -45,7 +53,7 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Title of product',
+                      productModel.title,
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         color: Colors.black54,
@@ -55,7 +63,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$100',
+                          '\$${productModel.price}',
                           style: textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.w600,
                             color: AppColors.themeColor,
@@ -65,7 +73,7 @@ class ProductCard extends StatelessWidget {
                           spacing: 4,
                           children: [
                             Icon(Icons.star, color: Colors.amber, size: 18),
-                            Text('4.5'),
+                            Text('${productModel.rating}'),
                           ],
                         ),
                         Container(
@@ -91,5 +99,13 @@ class ProductCard extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String getProductPhoto(List<String> photos) {
+    if (photos.isEmpty) {
+      return '';
+    } else {
+      return photos.first;
+    }
   }
 }
