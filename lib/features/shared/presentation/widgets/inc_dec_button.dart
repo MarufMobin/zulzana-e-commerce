@@ -39,7 +39,7 @@ class _IncDecButtonState extends State<IncDecButton> {
             widget.onChange(_counter);
             setState(() {});
           }
-        }),
+        }, _counter <= widget.minCount),
         Text('$_counter', style: TextStyle(fontSize: 24)),
         _iconButton(Icons.add, () {
           if (_counter < widget.maxCount) {
@@ -47,21 +47,21 @@ class _IncDecButtonState extends State<IncDecButton> {
             widget.onChange(_counter);
             setState(() {});
           }
-        }),
+        }, _counter <= widget.maxCount),
       ],
     );
   }
 
-  Widget _iconButton(IconData icon, VoidCallback onTap) {
+  Widget _iconButton(IconData icon, VoidCallback onTap, bool disable) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(4),
         decoration: BoxDecoration(
-          color: AppColors.themeColor,
+          color: disable ? Colors.grey : AppColors.themeColor,
           borderRadius: BorderRadius.circular(4),
         ),
-        child: Icon(icon, color: Colors.white, size: 20,),
+        child: Icon(icon, color: Colors.white, size: 20),
       ),
     );
   }
